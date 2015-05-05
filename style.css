@@ -12,6 +12,20 @@ body {
     overflow: hidden;
 }
 
-.name {
-    color:"orange";
+.leaflet-popup-content-wrapper {
+    border-radius: 0px;
+    background: #0f093c;
+    opacity: 0.9;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+   
+}
+
+.leaflet-popup-tip-container {
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: none repeat scroll 0 0 #0f093c;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }

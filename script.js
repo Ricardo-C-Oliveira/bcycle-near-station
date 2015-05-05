@@ -9,12 +9,12 @@ var map = L.map('map', {
 
      //the base map
      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+         attribution: 'Map tiles by <a href="http://cartodb.com/attributions#basemaps">CartoDB</a>, under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Data by <a href="http://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.'
      }).addTo(map);
 
 var data = L.geoJson(stations, {
 pointToLayer: function (feature, latlgn) {
-    var popupContent = '<b>Station Name: </b><span class="name"> + feature.properties.STATION + </span>';
+    var popupContent = '<p style="font-family: Roboto, sans-serif; color: white; font-size: 16px"><b>Station Name: </b><span style="color: red"><b>' + feature.properties.STATION + '</b></span></p>';
     return L.circleMarker(latlgn, Style(feature)).bindPopup(popupContent);
 },
 }).addTo(map);
@@ -28,6 +28,6 @@ pointToLayer: function (feature, latlgn) {
              color: "#BB2233",
              fillOpacity: 1,
              weight: 1,
-             radius: 5
+             radius: 6
          };
      }
