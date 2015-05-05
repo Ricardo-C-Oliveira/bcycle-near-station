@@ -22,10 +22,10 @@ pointToLayer: function (feature, latlgn) {
 //function that defines style for each point
      function Style(feature) {
          return {
-             fillColor: "#212477",
+             fillColor: "#1015a5",
              stroke: 1,
              opacity: 1,
-             color: "#BB2233",
+             color: "#dd0d24",
              fillOpacity: 1,
              weight: 1,
              radius: 6
