@@ -12,6 +12,7 @@ var map = L.map('map', {
          attribution: 'Map tiles by <a href="http://cartodb.com/attributions#basemaps">CartoDB</a>, under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Data by <a href="http://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.'
      }).addTo(map);
 
+//stations data
 var data = L.geoJson(stations, {
 pointToLayer: function (feature, latlgn) {
     var popupContent = '<p style="font-family: Roboto, sans-serif; color: white; font-size: 16px"><b>Station Name: </b><span style="color: red"><b>' + feature.properties.STATION + '</b></span></p>';
@@ -31,3 +32,12 @@ pointToLayer: function (feature, latlgn) {
              radius: 6
          };
      }
+
+     var marker = L.marker(new L.LatLng(39.739800, -104.989276), {
+        icon: L.AwesomeMarkers.icon({
+             icon: 'fa-exclamation-triangle',
+             markerColor: 'red',
+             prefix: 'fa'
+         }),
+         draggable: true
+     }).addTo(map);
