@@ -28,6 +28,6 @@ pointToLayer: function (feature, latlgn) {
              color: "#000",
              fillOpacity: 1,
              weight: 1,
-             radius: 5
+             radius: 3
          };
      }
