@@ -14,7 +14,7 @@ var map = L.map('map', {
 
 var data = L.geoJson(stations, {
 pointToLayer: function (feature, latlgn) {
-    var popupContent = "<b>Station Name: </b><span class="name">" + feature.properties.STATION + "</span>";
+    var popupContent = '<b>Station Name: </b><span class="name"> + feature.properties.STATION + </span>';
     return L.circleMarker(latlgn, Style(feature)).bindPopup(popupContent);
 },
 }).addTo(map);
