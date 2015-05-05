@@ -17,12 +17,12 @@ pointToLayer: function (feature, latlgn) {
     var popupContent = "<b>Station Name: </b>" + feature.properties.STATION;
     return L.circleMarker(latlgn, Style(feature)).bindPopup(popupContent);
 },
-});
+}).addTo(map);
 
 //function that defines style for each point
      function Style(feature) {
          return {
-             fillColor: white,
+             fillColor: "white",
              stroke: false,
              opacity: 1,
              color: "#000",
