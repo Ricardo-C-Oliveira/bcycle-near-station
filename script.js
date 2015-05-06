@@ -25,9 +25,8 @@ function Style(feature) {
   return {
     fillColor: "#1015a5",
     stroke: 1,
-    opacity: 1,
     color: "#dd0d24",
-    fillOpacity: 1,
+    fillOpacity: 0.7,
     weight: 1,
     radius: 6
   };
