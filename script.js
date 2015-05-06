@@ -35,7 +35,7 @@ function Style(feature) {
 
 var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
   icon: L.AwesomeMarkers.icon({
-    icon: 'fa-bicycle',
+    icon: 'fa-crosshairs',
     markerColor: 'red',
     prefix: 'fa'
   }),
