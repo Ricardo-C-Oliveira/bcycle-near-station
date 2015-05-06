@@ -35,7 +35,7 @@ pointToLayer: function (feature, latlgn) {
 
      var marker = L.marker(new L.LatLng(39.739800, -104.989276), {
         icon: L.AwesomeMarkers.icon({
-             icon: 'fa-exclamation-triangle',
+             icon: 'fa-bicycle',
              markerColor: 'red',
              prefix: 'fa'
          }),
