@@ -63,10 +63,31 @@ function addNear() {
         pointToLayer: function(feature, latlng) {
             return L.marker(latlng, {
                 icon: customIcon
-            });
+            }).bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 17px"><b>Station Name: </b><span style="color: #D83720"><b>' + feature.properties.STATION + '</b></span></p>');
         }
     }).addTo(map);
+    
+
+    
+    near.on('mouseover', function() {
+        this.openPopup();
+    });
+
+    near.on('onmouseout', function() {
+        this.closePopup();
+    });
+    
 }
+
+/*near.bindPopup(popupContent);
+marker.on('mouseover', function(e) {
+    this.openPopup();
+});
+
+marker.on('mouseout', function(e) {
+    this.closePopup();
+});
+*/
 
 marker.on('drag', function() {
     removeNear(), addNear()
