@@ -66,28 +66,15 @@ function addNear() {
             }).bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 17px"><b>Station Name: </b><span style="color: #D83720"><b>' + feature.properties.STATION + '</b></span></p>');
         }
     }).addTo(map);
-    
 
-    
-    near.on('mouseover', function() {
-        this.openPopup();
+    near.on('mouseover', function(e) {
+        e.layer.openPopup();
+    });
+    near.on('mouseout', function(e) {
+        e.layer.closePopup();
     });
 
-    near.on('onmouseout', function() {
-        this.closePopup();
-    });
-    
 }
-
-/*near.bindPopup(popupContent);
-marker.on('mouseover', function(e) {
-    this.openPopup();
-});
-
-marker.on('mouseout', function(e) {
-    this.closePopup();
-});
-*/
 
 marker.on('drag', function() {
     removeNear(), addNear()
