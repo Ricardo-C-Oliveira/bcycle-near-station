@@ -19,7 +19,7 @@ body {
 }
 
 .leaflet-popup-content-wrapper .leaflet-popup-content {
-   
+
 }
 
 .leaflet-popup-tip-container {
@@ -27,5 +27,23 @@ body {
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   background: none repeat scroll 0 0 #3720d8;
+  opacity: 0.9;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.info {
+    padding: 6px 4px;
+    font: 15px Arial, Helvetica, sans-serif;
+    background: #789fde;
+    box-shadow: 0px 0px 15px rgba(99, 99, 99, 0.68);
+    display: block;
+    width: 300px;
+    text-align: center;
+}
+
+.info img {
+  width: 250px;
+  height: auto
 }
