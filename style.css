@@ -14,7 +14,7 @@ body {
 
 .leaflet-popup-content-wrapper {
     border-radius: 0px;
-    background: #0f093c;
+    background: #3720d8;
     opacity: 0.9;
 }
 
@@ -26,6 +26,6 @@ body {
 }
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-  background: none repeat scroll 0 0 #0f093c;
+  background: none repeat scroll 0 0 #3720d8;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
