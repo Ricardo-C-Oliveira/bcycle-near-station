@@ -41,9 +41,6 @@ var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
     draggable: true
 }).addTo(map);
 
-
-
-
 //remove nearest station
 function removeNear() {
     map.removeLayer(near);
