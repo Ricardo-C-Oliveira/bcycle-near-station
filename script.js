@@ -24,7 +24,8 @@ info.onAdd = function(map) {
 };
 
 info.update = function(props) {
-  this._div.innerHTML = '<img src="img/logo.png"><br>';
+  this._div.innerHTML = '<img src="img/logo.png"><br>' + (props ?
+             '<h1><b>' + props.STATION + '</b></h1>' : '');
 };
 
 info.addTo(map);
@@ -86,17 +87,20 @@ function addNear() {
       info.update(layer.feature.properties);
       }
   }).addTo(map);
-
+  //console.log(nearest);
   near.on('mouseover', function(e) {
     e.layer.openPopup();
   });
   near.on('mouseout', function(e) {
     e.layer.closePopup();
   });
+  console.log(nearest);
+  info.update(nearest.properties);
 };
 
 //update the nearest station on drag
 marker.on('drag', function() {
-  removeNear(), addNear()
+  removeNear(), addNear();
+  //info.update(nearest.feature[0].properties);
 });
 addNear();
