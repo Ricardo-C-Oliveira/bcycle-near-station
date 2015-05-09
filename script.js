@@ -25,7 +25,7 @@ info.onAdd = function(map) {
 
 info.update = function(props) {
   this._div.innerHTML = '<img src="img/logo.png"><br>' + (props ?
-             '<h1><b>' + props.STATION + '</b></h1>' : '');
+    '<h1><b>' + props.STATION + '</b></h1>' : '');
 };
 
 info.addTo(map);
@@ -58,7 +58,10 @@ var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
     prefix: 'fa'
   }),
   draggable: true
-}).addTo(map);
+});
+
+marker.bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 14px"><b>Drag me to find the clesest station to you! </b></p>');
+marker.addTo(map).openPopup();
 
 //custom near icon
 var customIcon = L.AwesomeMarkers.icon({
@@ -85,7 +88,7 @@ function addNear() {
         icon: customIcon
       }).bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 17px"><b>Station Name: </b><span style="color: #D83720"><b>' + feature.properties.STATION + '</b></span></p>');
       info.update(layer.feature.properties);
-      }
+    }
   }).addTo(map);
   //console.log(nearest);
   near.on('mouseover', function(e) {
