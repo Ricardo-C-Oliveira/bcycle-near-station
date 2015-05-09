@@ -12,6 +12,24 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
   attribution: 'Map tiles by <a href="http://cartodb.com/attributions#basemaps">CartoDB</a>, under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Data by <a href="http://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.'
 }).addTo(map);
 
+//info box
+var info = L.control({
+  position: 'topleft'
+});
+
+info.onAdd = function(map) {
+  this._div = L.DomUtil.create('div', 'info');
+  this.update();
+  return this._div;
+};
+
+info.update = function(props) {
+  this._div.innerHTML = '<img src="img/logo.png"><br>';
+};
+
+info.addTo(map);
+//end info box
+
 //stations data
 var data = L.geoJson(stations, {
   pointToLayer: function(feature, latlgn) {
@@ -41,8 +59,6 @@ var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
   draggable: true
 }).addTo(map);
 
-
-
 //custom near icon
 var customIcon = L.AwesomeMarkers.icon({
   icon: 'fa-bicycle',
@@ -53,6 +69,7 @@ var customIcon = L.AwesomeMarkers.icon({
 //remove nearest station
 function removeNear() {
   map.removeLayer(near);
+  info.update();
 }
 
 //add nearest station
@@ -66,7 +83,8 @@ function addNear() {
       return L.marker(latlng, {
         icon: customIcon
       }).bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 17px"><b>Station Name: </b><span style="color: #D83720"><b>' + feature.properties.STATION + '</b></span></p>');
-    }
+      info.update(layer.feature.properties);
+      }
   }).addTo(map);
 
   near.on('mouseover', function(e) {
@@ -75,30 +93,10 @@ function addNear() {
   near.on('mouseout', function(e) {
     e.layer.closePopup();
   });
-
-}
+};
 
 //update the nearest station on drag
 marker.on('drag', function() {
   removeNear(), addNear()
 });
 addNear();
-
-//info box
-var info = L.control({
-  position: 'topleft'
-});
-
-info.onAdd = function(map) {
-  this._div = L.DomUtil.create('div', 'info');
-  this.update();
-  return this._div;
-};
-
-info.update = function(props) {
-  this._div.innerHTML = '<img src="img/logo.png">';
-};
-
-
-info.addTo(map);
-//end info box
