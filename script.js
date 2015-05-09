@@ -31,6 +31,17 @@ info.update = function(props) {
 info.addTo(map);
 //end info box
 
+//function that defines style for each point
+function Style(feature) {
+  return {
+    fillColor: "#1015a5",
+    color: "#dd0d24",
+    fillOpacity: 1,
+    weight: 2,
+    radius: 6
+  };
+}
+
 //stations data
 var data = L.geoJson(stations, {
   pointToLayer: function(feature, latlgn) {
@@ -38,18 +49,6 @@ var data = L.geoJson(stations, {
     return L.circleMarker(latlgn, Style(feature)).bindPopup(popupContent);
   },
 }).addTo(map);
-
-//function that defines style for each point
-function Style(feature) {
-  return {
-    fillColor: "#1015a5",
-    stroke: 1,
-    color: "#dd0d24",
-    fillOpacity: 0.7,
-    weight: 1,
-    radius: 6
-  };
-}
 
 var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
   icon: L.AwesomeMarkers.icon({
