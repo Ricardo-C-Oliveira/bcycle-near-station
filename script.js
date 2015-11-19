@@ -78,7 +78,11 @@ function removeNear() {
 //add nearest station
 function addNear() {
   //make marker a geoJson
+<<<<<<< HEAD
   var pointMarker = marker.toGeoJSON();
+=======
+  pointMarker = marker.toGeoJSON();
+>>>>>>> master
   //turf nearest
   nearest = turf.nearest(pointMarker, stations);
   near = L.geoJson(nearest, {
@@ -96,13 +100,33 @@ function addNear() {
   near.on('mouseout', function(e) {
     e.layer.closePopup();
   });
+<<<<<<< HEAD
   console.log(nearest);
+=======
+  console.log(nearest.geometry.coordinates);
+  console.log(pointMarker.geometry.coordinates);
+>>>>>>> master
   info.update(nearest.properties);
 };
 
 //update the nearest station on drag
 marker.on('drag', function() {
   removeNear(), addNear();
+<<<<<<< HEAD
   //info.update(nearest.feature[0].properties);
 });
 addNear();
+=======
+});
+addNear();
+
+L.Routing.control({
+    waypoints: [
+        L.latLng(nearest.geometry.coordinates),
+        L.latLng(pointMarker.geometry.coordinates)
+    ],
+    routeWhileDragging: true,
+    router: L.Routing.valhalla('valhalla-obkccAI', 'pedestrian'),
+    formatter: new L.Routing.Valhalla.Formatter()
+}).addTo(map);
+>>>>>>> master
