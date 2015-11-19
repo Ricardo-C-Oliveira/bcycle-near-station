@@ -59,7 +59,7 @@ var marker = L.marker(new L.LatLng(39.736686, -105.002213), {
   draggable: true
 });
 
-marker.bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 14px"><b>Drag me to find the clesest station to you! </b></p>');
+marker.bindPopup('<p style="font-family: Roboto, sans-serif; color: white; font-size: 14px"><b>Drag me to find the closest station to you! </b></p>');
 marker.addTo(map).openPopup();
 
 //custom near icon
@@ -72,17 +72,14 @@ var customIcon = L.AwesomeMarkers.icon({
 //remove nearest station
 function removeNear() {
   map.removeLayer(near);
+  map.removeControl(routeControl);
   info.update();
 }
 
 //add nearest station
 function addNear() {
   //make marker a geoJson
-<<<<<<< HEAD
-  var pointMarker = marker.toGeoJSON();
-=======
   pointMarker = marker.toGeoJSON();
->>>>>>> master
   //turf nearest
   nearest = turf.nearest(pointMarker, stations);
   near = L.geoJson(nearest, {
@@ -100,33 +97,38 @@ function addNear() {
   near.on('mouseout', function(e) {
     e.layer.closePopup();
   });
-<<<<<<< HEAD
-  console.log(nearest);
-=======
   console.log(nearest.geometry.coordinates);
-  console.log(pointMarker.geometry.coordinates);
->>>>>>> master
+  console.log("Lat: " + nearest.geometry.coordinates[1]);
+  console.log("Long: " + nearest.geometry.coordinates[0]);
   info.update(nearest.properties);
+  routeControl = L.Routing.control({
+    waypoints: [
+      L.latLng(pointMarker.geometry.coordinates[1], pointMarker.geometry.coordinates[0]),
+      L.latLng(nearest.geometry.coordinates[1], nearest.geometry.coordinates[0])
+    ],
+    lineOptions: {
+      styles: [{
+        color: 'white',
+        opacity: 0.8,
+        weight: 8
+      }, {
+        color: '#2676C6',
+        opacity: 1,
+        weight: 4
+      }]
+    },
+    routeWhileDragging: false,
+    createMarker: function() {
+      return false
+    },
+    router: L.Routing.valhalla('valhalla-obkccAI', 'pedestrian'),
+    formatter: new L.Routing.Valhalla.Formatter(),
+  }).addTo(map);
+  routeControl.RoutingErrorEvent;
 };
 
 //update the nearest station on drag
-marker.on('drag', function() {
+marker.on('dragend', function() {
   removeNear(), addNear();
-<<<<<<< HEAD
-  //info.update(nearest.feature[0].properties);
 });
 addNear();
-=======
-});
-addNear();
-
-L.Routing.control({
-    waypoints: [
-        L.latLng(nearest.geometry.coordinates),
-        L.latLng(pointMarker.geometry.coordinates)
-    ],
-    routeWhileDragging: true,
-    router: L.Routing.valhalla('valhalla-obkccAI', 'pedestrian'),
-    formatter: new L.Routing.Valhalla.Formatter()
-}).addTo(map);
->>>>>>> master
